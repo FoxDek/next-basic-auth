@@ -10,26 +10,6 @@ export default function Page() {
 
   const router = useRouter();
 
-  // async function handleFormSubmit(formData: FormData) {
-  //   setIsSubmitting(true);
-  //   setErrorMessage(null);
-
-  //   try {
-  //     const result = await handleSubmitLogin(formData);
-
-  //     if (result?.error) {
-  //       setErrorMessage(result.error);
-  //     } else if (result?.message) {
-  //       setErrorMessage(result.message);
-  //     }
-
-  //   } catch (error) {
-  //     setErrorMessage("An error occurred while registering.");
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // }
-
   async function handleFormSubmit(formData: FormData) {
     setIsSubmitting(true);
     setErrorMessage(null);

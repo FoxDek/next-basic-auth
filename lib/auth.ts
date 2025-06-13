@@ -9,15 +9,16 @@ export interface AuthPayload {
 
 export async function getUserFromToken(): Promise<AuthPayload | null> {
   const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+  const token = cookieStore.get("access-token")?.value;
 
   if (!token) {
-    console.log('Токена нет')
+    
+    console.log('Access-токена нет')
     return null;
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as AuthPayload;
+    const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET!) as AuthPayload;
     return decoded;
   } catch (err) {
     console.error("Ошибка верификации JWT: ", err);

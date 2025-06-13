@@ -37,8 +37,14 @@ export async function POST(request: NextRequest) {
 
     const token = jwt.sign(
       { userId: user._id, email: user.email },
-      process.env.JWT_SECRET!,
-      { expiresIn: "10m" }
+      process.env.JWT_ACCESS_SECRET!,
+      { expiresIn: "15m" }
+    );
+
+    const refreshToken = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_REFRESH_SECRET!,
+      { expiresIn: "7d" }
     );
 
     const response = NextResponse.json(
@@ -47,12 +53,20 @@ export async function POST(request: NextRequest) {
     );
 
     // const cookieStore = await cookies();
-    response.cookies.set("token", token, {
+    response.cookies.set("access-token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "production",
       sameSite: "strict",
       path: "/",
-      maxAge: 10 * 60,
+      maxAge: 15 * 60,
+    });
+
+    response.cookies.set("refresh-token", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== "production",
+      sameSite: "strict",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60,
     });
 
     return response;

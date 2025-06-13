@@ -20,7 +20,8 @@ export default function Page() {
         setErrorMessage(result.message);
       }
 
-    } catch (error) {
+    } catch (err) {
+      console.log('Ошибка регистрации: ', err)
       setErrorMessage("An error occurred while registering.");
     } finally {
       setIsSubmitting(false);

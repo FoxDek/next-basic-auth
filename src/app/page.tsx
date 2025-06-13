@@ -26,7 +26,7 @@ export default async function Page() {
     <section className='flex flex-col justify-center items-center py-10 gap-5'>
       <div className='border p-5 rounded-xl flex flex-col gap-5'>
         <p className=''>
-          auth status:{" "}
+          auth status:
           <span
             className={`font-bold ${
               isAuth ? "text-green-500" : "text-red-500"
@@ -37,7 +37,7 @@ export default async function Page() {
         </p>
       </div>
 
-      <div className='border p-5 rounded-xl flex flex-col gap-5'>
+      {!isAuth && <div className='border p-5 rounded-xl flex flex-col gap-5'>
         <Link
           href='/register'
           className='bg-gray-700 text-white py-2 px-4 rounded-xl flex items-center justify-center'
@@ -50,7 +50,7 @@ export default async function Page() {
         >
           log in
         </Link>
-      </div>
+      </div>}
 
       <div className='border p-5 rounded-xl flex flex-col gap-5'>
         <Link
